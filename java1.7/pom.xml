@@ -5,7 +5,8 @@
     <parent>
         <groupId>com.example</groupId>
         <artifactId>java-training</artifactId>
-        <version>1.0.0-SNAPSHOT</version>
+        <version>1.0.0</version>
+        <relativePath>../pom.xml</relativePath>
     </parent>
 
     <artifactId>java1.7</artifactId>
@@ -13,7 +14,7 @@
 
     <properties>
       <maven.compiler.source>1.7</maven.compiler.source>
-      <maven.compiler.target>1.7</maven.compiler.target>
+      <maven.compiler.target>1.8</maven.compiler.target>
       <maven.test.skip>true</maven.test.skip>
     </properties>
 
@@ -44,10 +45,7 @@
                 <artifactId>maven-compiler-plugin</artifactId>
                 <version>2.0.2</version>
                 <configuration>
-                  <fork>true</fork>
-                  <executable>D:/Program Files/Java/jdk1.7.0_80/bin/javac.exe</executable>
                   <source>${maven.compiler.source}</source>
-                  <target>${maven.compiler.target}</target>
                 </configuration>
             </plugin>
         </plugins>

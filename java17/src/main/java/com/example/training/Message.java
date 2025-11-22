@@ -1,4 +1,4 @@
-package com.example.training.modern;
+package com.example.training;
 
 public record Message(String recipient, String body) {
 }

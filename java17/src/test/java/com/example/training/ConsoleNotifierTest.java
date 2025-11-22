@@ -1,4 +1,4 @@
-package com.example.training.modern;
+package com.example.training;
 
 import org.junit.jupiter.api.Test;
 
