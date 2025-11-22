@@ -7,6 +7,7 @@ public class ApplicationJava2 {
         GreetingPrinter printer = new GreetingPrinter(greetingService, System.out);
         String name = args.length > 0 ? args[0] : "World";
         printer.printGreeting(name);
+        new JavaDataTypes();
     }
 
 }
