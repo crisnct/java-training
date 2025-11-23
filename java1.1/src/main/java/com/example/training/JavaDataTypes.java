@@ -102,4 +102,9 @@ public class JavaDataTypes {
     }
 
   }
+
+  public static void main(String[] args) {
+    new JavaDataTypes();
+  }
+
 }

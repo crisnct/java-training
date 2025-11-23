@@ -1,6 +1,7 @@
 package com.example.training;
 
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.Collections;
 import java.util.Enumeration;
 import java.util.HashMap;
@@ -17,8 +18,11 @@ import java.util.StringTokenizer;
 import java.util.TreeMap;
 import java.util.TreeSet;
 import java.util.Vector;
+import java.util.WeakHashMap;
 
-/** @noinspection FieldCanBeLocal*/
+/**
+ * @noinspection FieldCanBeLocal
+ */
 public class JavaDataTypes {
 
   // Primitive types (Java 1.0)
@@ -50,6 +54,7 @@ public class JavaDataTypes {
   private final List arrayList;
   private final Set hashSet;
   private final Map hashMap;
+  private final Map weakHashMap;
   private final SortedSet sortedSet;
   private final SortedMap sortedMap;
 
@@ -97,7 +102,7 @@ public class JavaDataTypes {
     stack.add(new Byte("3"));
     stack.add(new Double(4.2d));
     stack.push("lastelement");
-    while (!stack.isEmpty()){
+    while (!stack.isEmpty()) {
       Object elem = stack.pop();
       System.out.println(elem);
     }
@@ -109,14 +114,14 @@ public class JavaDataTypes {
     hashtable.put("3", new Byte("3"));
     hashtable.put("4", new Double("4.2"));
     Enumeration elements1 = hashtable.elements();
-    while (elements1.hasMoreElements()){
+    while (elements1.hasMoreElements()) {
       Object obj = elements1.nextElement();
       System.out.println(obj);
     }
 
     System.out.println("Iteration 4-----hashtable-------------------");
     tokenizer = new StringTokenizer("test1 test2 test3");
-    while (tokenizer.hasMoreTokens()){
+    while (tokenizer.hasMoreTokens()) {
       Object word = tokenizer.nextElement();
       System.out.println(word);
     }
@@ -141,6 +146,30 @@ public class JavaDataTypes {
     System.out.println("List contents: " + arrayList);
     System.out.println("Set contents: " + hashSet);
     System.out.println("Map contents: " + hashMap);
+
+    weakHashMap = new WeakHashMap(2, 0.75f);
+    Integer firstKey = new Integer(1);
+    String firstValue = "Red";
+    weakHashMap.put(firstKey, firstValue);
+    weakHashMap.put(new Integer(2), "Green");
+    weakHashMap.put(new Integer(3), "Blue");
+    weakHashMap.put(new Integer(4), "Cyan");
+    weakHashMap.put(new Integer(5), "Magenta");
+    try {
+      Thread.sleep(1000);
+      System.gc();
+      if (weakHashMap.isEmpty()) {
+        System.out.println("\nWeakHashMap is empty");
+      } else {
+        System.out.println("\nWeakHashMap values:");
+        for (Iterator it = weakHashMap.values().iterator(); it.hasNext(); ) {
+          Object val = it.next();
+          System.out.println(val);
+        }
+      }
+    } catch (InterruptedException e) {
+      throw new RuntimeException("");
+    }
 
     // ===== 2. SORTED VARIANTS =====
     sortedSet = new TreeSet(arrayList);
@@ -175,5 +204,9 @@ public class JavaDataTypes {
 
     System.out.println("List after iteration/removal: " + arrayList);
 
+  }
+
+  public static void main(String[] args) {
+    new JavaDataTypes();
   }
 }
