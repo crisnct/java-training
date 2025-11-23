@@ -1,6 +1,6 @@
 package com.example.training;
 
-public class ApplicationJava3 {
+public class Application {
 
     public static void main(String[] args) {
         GreetingService greetingService = new DefaultGreetingService();
