@@ -18,6 +18,7 @@ public class GreetingPrinter {
     this.output = output;
   }
 
+  @Deprecated
   public void printGreeting(String name) {
     String message = greetingService.greet(name);
     output.println(message);
