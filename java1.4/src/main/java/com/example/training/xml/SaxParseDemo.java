@@ -1,4 +1,4 @@
-package com.example.training;
+package com.example.training.xml;
 
 import java.io.InputStream;
 import javax.xml.parsers.SAXParser;

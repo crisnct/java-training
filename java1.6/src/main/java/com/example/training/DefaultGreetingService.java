@@ -9,7 +9,7 @@ public class DefaultGreetingService implements GreetingService {
             target = "World";
         } else {
             String trimmed = name.trim();
-            target = trimmed.length() == 0 ? "World" : trimmed;
+            target = trimmed.isEmpty() ? "World" : trimmed;
         }
         return "Hello, " + target + "!";
     }

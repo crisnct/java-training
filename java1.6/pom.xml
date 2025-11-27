@@ -18,28 +18,57 @@
         <maven.test.skip>true</maven.test.skip>
     </properties>
 
+  <dependencies>
+
+    <dependency>
+      <groupId>com.sun.xml.ws</groupId>
+      <artifactId>jaxws-rt</artifactId>
+      <version>2.3.7</version>
+    </dependency>
+
+    <!-- JAXB API + impl (javax.* line, works on JDK 11+) -->
+    <dependency>
+      <groupId>javax.xml.bind</groupId>
+      <artifactId>jaxb-api</artifactId>
+      <version>2.3.1</version>
+    </dependency>
+    <dependency>
+      <groupId>com.sun.xml.bind</groupId>
+      <artifactId>jaxb-impl</artifactId>
+      <version>2.3.7</version>
+    </dependency>
+
+    <!-- SAAJ (SOAP with Attachments), used by JAX-WS under the hood -->
+    <dependency>
+      <groupId>com.sun.xml.messaging.saaj</groupId>
+      <artifactId>saaj-impl</artifactId>
+      <version>1.5.3</version>
+    </dependency>
+
+    <!-- Java Activation (needed by JAXB/SAAJ on JDK 9+) -->
+    <dependency>
+      <groupId>com.sun.activation</groupId>
+      <artifactId>javax.activation</artifactId>
+      <version>1.2.0</version>
+    </dependency>
+
+    <dependency>
+      <groupId>org.codehaus.groovy</groupId>
+      <artifactId>groovy-all</artifactId>
+      <version>2.3.6</version>
+    </dependency>
+
+    <dependency>
+      <groupId>org.apache.groovy</groupId>
+      <artifactId>groovy-jsr223</artifactId>
+      <version>4.0.21</version>
+    </dependency>
+
+  </dependencies>
+
+
     <build>
         <plugins>
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-toolchains-plugin</artifactId>
-                <version>3.1.0</version>
-                <executions>
-                    <execution>
-                        <phase>validate</phase>
-                        <goals>
-                            <goal>toolchain</goal>
-                        </goals>
-                        <configuration>
-                            <toolchains>
-                                <jdk>
-                                    <version>${maven.compiler.source}</version>
-                                </jdk>
-                            </toolchains>
-                        </configuration>
-                    </execution>
-                </executions>
-            </plugin>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-compiler-plugin</artifactId>

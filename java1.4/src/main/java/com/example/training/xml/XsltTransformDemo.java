@@ -1,4 +1,4 @@
-package com.example.training;
+package com.example.training.xml;
 
 import java.io.InputStream;
 import javax.xml.transform.*;
@@ -8,8 +8,8 @@ import java.io.File;
 
 public class XsltTransformDemo {
     public static void main(String[] args) throws Exception {
-        InputStream books =  SaxParseDemo.class.getResourceAsStream("../../../books.xml");
-        InputStream template =  SaxParseDemo.class.getResourceAsStream("../../../template.xsl");
+        InputStream books =  SaxParseDemo.class.getResourceAsStream("../../../../books.xml");
+        InputStream template =  SaxParseDemo.class.getResourceAsStream("../../../../template.xsl");
 
         File out = new File("books.html");
 
