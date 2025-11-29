@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+  <parent>
+    <groupId>com.example</groupId>
+    <artifactId>java-training</artifactId>
+    <version>1.0.0</version>
+  </parent>
+
+  <artifactId>java1.8</artifactId>
+  <packaging>jar</packaging>
+
+  <properties>
+    <maven.compiler.source>1.8</maven.compiler.source>
+    <maven.compiler.target>1.8</maven.compiler.target>
+    <maven.test.skip>true</maven.test.skip>
+  </properties>
+
+  <dependencies>
+    <dependency>
+      <groupId>org.ow2.asm</groupId>
+      <artifactId>asm</artifactId>
+      <version>9.6</version>
+    </dependency>
+
+    <dependency>
+      <groupId>org.openjdk.nashorn</groupId>
+      <artifactId>nashorn-core</artifactId>
+      <version>15.4</version>
+    </dependency>
+  </dependencies>
+
+  <build>
+    <plugins>
+
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-compiler-plugin</artifactId>
+        <version>3.11.0</version>
+        <executions>
+          <execution>
+            <id>compile-annotation-processor-first</id>
+            <phase>generate-sources</phase>
+            <goals>
+              <goal>compile</goal>
+            </goals>
+            <configuration>
+              <proc>none</proc>
+              <annotationProcessors/>
+              <includes>
+                <include>com/example/training/annotations/processor/runtime/ValidAgeRuntime.java</include>
+                <include>com/example/training/annotations/processor/source/ValidAgeSource.java</include>
+                <include>com/example/training/annotations/processor/clazz/ValidAgeClass.java</include>
+                <include>com/example/training/annotations/processor/source/ValidAgeSourceProcessor.java</include>
+                <include>com/example/training/annotations/processor/runtime/ValidAgeRuntimeProcessor.java</include>
+                <include>com/example/training/annotations/processor/clazz/ValidAgeClassProcessor.java</include>
+              </includes>
+            </configuration>
+          </execution>
+        </executions>
+        <configuration>
+          <source>${maven.compiler.source}</source>
+          <annotationProcessors>
+            <annotationProcessor>com.example.training.annotations.processor.clazz.ValidAgeClassProcessor</annotationProcessor>
+            <annotationProcessor>com.example.training.annotations.processor.source.ValidAgeSourceProcessor</annotationProcessor>
+            <annotationProcessor>com.example.training.annotations.processor.runtime.ValidAgeRuntimeProcessor</annotationProcessor>
+          </annotationProcessors>
+        </configuration>
+      </plugin>
+    </plugins>
+  </build>
+
+</project>
