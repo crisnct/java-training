@@ -1,6 +1,5 @@
 package com.example.training;
 
-import java.io.BufferedReader;
 import java.io.DataInputStream;
 import java.io.IOException;
 import java.io.InputStream;

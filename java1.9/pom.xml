@@ -14,16 +14,188 @@
   <packaging>jar</packaging>
 
   <properties>
-    <maven.compiler.source>1.9</maven.compiler.source>
-    <maven.compiler.target>1.9</maven.compiler.target>
+    <maven.compiler.release>9</maven.compiler.release>
+    <maven.compiler.source>9</maven.compiler.source>
+    <maven.compiler.target>9</maven.compiler.target>
     <maven.test.skip>true</maven.test.skip>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
   </properties>
 
+  <dependencies>
+    <dependency>
+      <groupId>com.example.training</groupId>
+      <artifactId>java1.9basemodule</artifactId>
+      <version>1.0.0</version>
+      <scope>compile</scope>
+    </dependency>
+  </dependencies>
 
-  <build>
-    <plugins>
+  <profiles>
+    <profile>
+      <id>multi-release</id>
+      <activation>
+        <activeByDefault>true</activeByDefault>
+      </activation>
+      <build>
+        <plugins>
+          <plugin>
+            <groupId>org.apache.maven.plugins</groupId>
+            <artifactId>maven-compiler-plugin</artifactId>
+            <version>3.13.0</version>
+            <executions>
+              <!-- Compilează codul pentru Java 9+ în META-INF/versions/9 -->
+              <execution>
+                <id>default-compile</id>
+                <phase>compile</phase>
+                <goals>
+                  <goal>compile</goal>
+                </goals>
+                <configuration>
+                  <compilerArgs>
+                    <arg>--add-modules</arg>
+                    <arg>jdk.incubator.httpclient</arg>
+                  </compilerArgs>
+                  <release>9</release>
+                  <outputDirectory>${project.build.outputDirectory}</outputDirectory>
+                </configuration>
+              </execution>
 
-    </plugins>
-  </build>
+              <execution>
+                <id>compile-java8</id>
+                <phase>compile</phase>
+                <goals>
+                  <goal>compile</goal>
+                </goals>
+                <configuration>
+                  <compileSourceRoots>
+                    <compileSourceRoot>${project.basedir}/src8/main/java</compileSourceRoot>
+                  </compileSourceRoots>
+                  <release>8</release>
+                  <outputDirectory>
+                    ${project.build.outputDirectory}/META-INF/versions/8
+                  </outputDirectory>
+                </configuration>
+              </execution>
+
+            </executions>
+          </plugin>
+
+          <!-- Marchează JAR-ul ca Multi-Release -->
+          <plugin>
+            <groupId>org.apache.maven.plugins</groupId>
+            <artifactId>maven-jar-plugin</artifactId>
+            <version>3.4.2</version>
+            <configuration>
+              <archive>
+                <manifest>
+                  <mainClass>com.example.training.VersionPrinter</mainClass>
+                </manifest>
+                <manifestEntries>
+                  <Multi-Release>true</Multi-Release>
+                </manifestEntries>
+              </archive>
+            </configuration>
+          </plugin>
+        </plugins>
+      </build>
+    </profile>
+
+    <profile>
+      <id>jlink-image</id>
+      <build>
+        <plugins>
+          <!-- Compile modular app (Java 9+) -->
+          <plugin>
+            <groupId>org.apache.maven.plugins</groupId>
+            <artifactId>maven-compiler-plugin</artifactId>
+            <version>3.11.0</version>
+            <configuration>
+              <source>1.9</source>
+              <target>1.9</target>
+              <compileSourceRoots>
+                <compileSourceRoot>${project.basedir}/src/main/java</compileSourceRoot>
+              </compileSourceRoots>
+              <outputDirectory>${project.build.outputDirectory}</outputDirectory>
+            </configuration>
+          </plugin>
+
+          <plugin>
+            <groupId>org.apache.maven.plugins</groupId>
+            <artifactId>maven-toolchains-plugin</artifactId>
+            <version>3.1.0</version>
+            <executions>
+              <execution>
+                <phase>validate</phase>
+                <goals>
+                  <goal>toolchain</goal>
+                </goals>
+                <configuration>
+                  <toolchains>
+                    <jdk>
+                      <version>1.9</version>
+                    </jdk>
+                  </toolchains>
+                </configuration>
+              </execution>
+            </executions>
+          </plugin>
+
+          <!-- (Optional) mark Main for convenience -->
+          <plugin>
+            <groupId>org.apache.maven.plugins</groupId>
+            <artifactId>maven-jar-plugin</artifactId>
+            <version>3.4.2</version>
+            <configuration>
+              <archive>
+                <manifest>
+                  <mainClass>com.example.training.VersionPrinter</mainClass>
+                </manifest>
+              </archive>
+            </configuration>
+          </plugin>
+
+          <!-- Build the custom runtime -->
+          <plugin>
+            <groupId>org.apache.maven.plugins</groupId>
+            <artifactId>maven-jlink-plugin</artifactId>
+            <version>3.2.0</version>
+            <dependencies>
+              <!-- Provide the class that’s missing in the plugin realm -->
+              <dependency>
+                <groupId>org.apache.commons</groupId>
+                <artifactId>commons-lang3</artifactId>
+                <version>3.14.0</version> <!-- 3.12+ is fine -->
+              </dependency>
+            </dependencies>
+            <executions>
+              <execution>
+                <id>make-runtime-image</id>
+                <phase>package</phase>
+                <goals><goal>jlink</goal></goals>
+                <configuration>
+                  <classifier>runtime</classifier>
+                  <!-- Use the modular JAR instead of the classes directory (JLink on JDK 9 fails on exploded modules) -->
+                  <outputDirectory>${project.build.directory}/${project.build.finalName}.jar</outputDirectory>
+                  <imageName>app-runtime</imageName>
+                  <stripDebug>true</stripDebug>
+                  <noHeaderFiles>true</noHeaderFiles>
+                  <noManPages>true</noManPages>
+                  <compress>2</compress>
+                  <verbose>true</verbose>
+                  <!-- Your **modular** entrypoint -->
+                  <launcher>app=app.core/com.example.training.VersionPrinter</launcher>
+                  <!-- Only entry module; jlink resolves the rest -->
+<!--                  <addModules>-->
+<!--                    <addModule>app.core</addModule>-->
+<!--                  </addModules>-->
+                </configuration>
+              </execution>
+            </executions>
+          </plugin>
+
+        </plugins>
+      </build>
+    </profile>
+  </profiles>
+
 </project>

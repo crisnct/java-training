@@ -1,6 +1,5 @@
 package com.example.training;
 
-import com.example.training.GreetingService;
 import java.io.PrintStream;
 
 public class GreetingPrinter {

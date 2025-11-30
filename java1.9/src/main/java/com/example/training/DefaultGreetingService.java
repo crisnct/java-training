@@ -1,16 +1,14 @@
 package com.example.training;
 
+import com.example.training.api.GreetingService;
+
 public class DefaultGreetingService implements GreetingService {
 
-    @Override
-    public String greet(String name) {
-        String target;
-        if (name == null) {
-            target = "World";
-        } else {
-            String trimmed = name.trim();
-            target = trimmed.isEmpty() ? "World" : trimmed;
-        }
-        return "Hello, " + target + "!";
-    }
+  private final InternalLogic logic = new InternalLogic(); // internal class
+
+  @Override
+  public String greet(String name) {
+    return logic.format(name);
+  }
+
 }

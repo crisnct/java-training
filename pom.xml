@@ -16,9 +16,10 @@
         <module>java1.6</module>
         <module>java1.7</module>
         <module>java1.8</module>
+        <module>java1.9</module>
 
         <module>java17</module>
-      <module>java1.9</module>
+      <module>java1.9basemodule</module>
 
     </modules>
 

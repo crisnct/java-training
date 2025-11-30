@@ -1,11 +1,15 @@
 package com.example.training;
 
+import com.example.training.api.GreetingService;
+import com.example.training.api.LisaGreetingService;
+
 public class Application {
 
-    public static void main(String[] args) {
-        GreetingService greetingService = new DefaultGreetingService();
-        GreetingPrinter printer = new GreetingPrinter(greetingService, System.out);
-        String name = args.length > 0 ? args[0] : "World";
-        printer.printGreeting(name);
-    }
+  public static void main(String[] args) {
+    GreetingService g = new DefaultGreetingService();
+    System.out.println(g.greet("Cristian"));
+
+    g = new LisaGreetingService();
+    System.out.println(g.greet("Cristian"));
+  }
 }

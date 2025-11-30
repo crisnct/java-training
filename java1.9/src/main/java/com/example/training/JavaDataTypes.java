@@ -14,6 +14,7 @@ import java.util.LinkedHashMap;
 import java.util.LinkedHashSet;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
 import java.util.Stack;
 import java.util.StringTokenizer;
 import java.util.TreeMap;
@@ -125,7 +126,21 @@ public class JavaDataTypes {
 
   //  Java 8 - no new collections
 
-  //  Java 9
+  //  Java 9 - no new collections, but new utility classes
+  //  Characteristics of List.of, Set.of, Map.of
+  //  - Immutable (cannot add/remove/modify)
+  //  - Optimized for memory
+  //  - Fail-fast on null keys or values
+  //  - Much faster than Collections.unmodifiableList(...) wrappers
+  private final List<String> names2 = List.of("Alice", "Bob", "Charlie");
+  private final Set<Integer> numbers2 = Set.of(1, 2, 3);
+  private final Map<String, Integer> ages = Map.of("John", 30, "Ana", 25);
+  private final Map<String, Integer> ages2 = Map.ofEntries(
+      Map.entry("John", 30),
+      Map.entry("Ana", 25),
+      Map.entry("Mark", 40)
+  );
+
 
   public JavaDataTypes() throws InterruptedException {
     Primitives();
