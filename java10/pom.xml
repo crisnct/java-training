@@ -1,0 +1,130 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+  <parent>
+    <groupId>com.example</groupId>
+    <artifactId>java-training</artifactId>
+    <version>1.0.0</version>
+  </parent>
+
+  <groupId>com.example.training</groupId>
+  <artifactId>java10</artifactId>
+  <packaging>jar</packaging>
+
+  <properties>
+    <maven.compiler.release>10</maven.compiler.release>
+    <maven.compiler.source>10</maven.compiler.source>
+    <maven.compiler.target>10</maven.compiler.target>
+    <maven.test.skip>true</maven.test.skip>
+    <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+  </properties>
+
+  <build>
+    <plugins>
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-toolchains-plugin</artifactId>
+        <version>3.1.0</version>
+        <executions>
+          <execution>
+            <phase>validate</phase>
+            <goals>
+              <goal>toolchain</goal>
+            </goals>
+            <configuration>
+              <toolchains>
+                <jdk>
+                  <version>10</version>
+                </jdk>
+              </toolchains>
+            </configuration>
+          </execution>
+        </executions>
+      </plugin>
+
+      <plugin>
+        <groupId>org.codehaus.mojo</groupId>
+        <artifactId>exec-maven-plugin</artifactId>
+        <version>1.6.0</version>
+
+        <executions>
+
+          <!-- Step 1: run app once and dump loaded classes -->
+          <execution>
+            <id>dump-class-list</id>
+            <phase>package</phase>
+            <goals>
+              <goal>exec</goal>
+            </goals>
+            <configuration>
+              <executable>${java.home}/bin/java</executable>
+              <arguments>
+                <!-- JVM args -->
+                <argument>-Xshare:off</argument>
+                <argument>-XX:DumpLoadedClassList=${project.build.directory}/classes.lst</argument>
+
+                <argument>--add-modules=java.instrument</argument>
+                <!-- classpath -->
+                <argument>-cp</argument>
+                <argument>${project.build.outputDirectory}</argument>
+
+                <!-- main class -->
+                <argument>com.example.training.Application</argument>
+              </arguments>
+            </configuration>
+          </execution>
+
+          <!-- Step 2: create the AppCDS archive -->
+          <execution>
+            <id>create-appcds-archive</id>
+            <phase>package</phase>
+            <goals>
+              <goal>exec</goal>
+            </goals>
+            <configuration>
+              <executable>${java.home}/bin/java</executable>
+              <arguments>
+                <argument>-XX:+UnlockDiagnosticVMOptions</argument>
+                <!-- Put app classes on the classpath so the preload can resolve them -->
+                <argument>-cp</argument>
+                <argument>${project.build.directory}\${project.build.finalName}.jar</argument>
+
+                <argument>-Xshare:dump</argument>
+                <argument>-XX:SharedClassListFile=${project.build.directory}/classes.lst</argument>
+                <argument>-XX:SharedArchiveFile=${project.build.directory}/appcds.jsa</argument>
+                <argument>--add-modules=java.instrument</argument>
+              </arguments>
+            </configuration>
+          </execution>
+
+          <!-- Optional Step 3: run app using the archive -->
+          <execution>
+            <id>run-with-appcds</id>
+            <goals>
+              <goal>exec</goal>
+            </goals>
+            <configuration>
+              <executable>${java.home}/bin/java</executable>
+              <arguments>
+                <!-- JVM flags -->
+                <argument>-Xshare:on</argument>
+                <argument>-XX:SharedArchiveFile=${project.build.directory}/appcds.jsa</argument>
+
+                <!-- classpath -->
+                <argument>-cp</argument>
+                <argument>${project.build.outputDirectory}</argument>
+
+                <!-- main class -->
+                <argument>com.example.training.Application</argument>
+              </arguments>
+            </configuration>
+          </execution>
+
+        </executions>
+      </plugin>
+    </plugins>
+  </build>
+
+</project>
