@@ -1,6 +1,7 @@
 package com.example.training.gc;
 
 /**
+ *Java 10:
  *Run with different VM flags:
  *  -XX:+UseSerialGC -Xlog:gc    -> Single-threaded GC (all phases), Stop-the-world pauses for the entire duration.
  *  -XX:+UseParallelGC -Xlog:gc  -> Stop-the-world GC, but parallelized across multiple threads
