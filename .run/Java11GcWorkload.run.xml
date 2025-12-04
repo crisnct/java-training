@@ -1,11 +1,11 @@
 <component name="ProjectRunConfigurationManager">
   <configuration default="false" name="Java11GcWorkload" type="Application" factoryName="Application">
-    <option name="MAIN_CLASS_NAME" value="com.example.trining.GcWorkload" />
+    <option name="MAIN_CLASS_NAME" value="com.example.training.GcWorkload" />
     <module name="java11" />
     <option name="VM_PARAMETERS" value="-XX:StartFlightRecording=filename=run.jfr -XX:+UseG1GC -Xlog:gc " />
     <extension name="coverage">
       <pattern>
-        <option name="PATTERN" value="com.example.trining.*" />
+        <option name="PATTERN" value="com.example.training.*" />
         <option name="ENABLED" value="true" />
       </pattern>
     </extension>

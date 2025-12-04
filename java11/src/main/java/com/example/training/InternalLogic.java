@@ -1,0 +1,8 @@
+package com.example.training;
+
+// Not exported → totally inaccessible from other modules
+class InternalLogic {
+    String format(String name) {
+        return "Hello, " + name;
+    }
+}

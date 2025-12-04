@@ -4,3 +4,4 @@
 /.idea
 /products.xml
 /*.jfr
+/java12/dependency-reduced-pom.xml

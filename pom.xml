@@ -20,6 +20,8 @@
         <module>java1.9basemodule</module>
         <module>java10</module>
         <module>java11</module>
+        <module>java12</module>
+        <module>java13</module>
 
         <module>java17</module>
 
