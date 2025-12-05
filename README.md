@@ -1,9 +1,9 @@
-# java-training
+# This project illustrates with small snippets the changes made in each Java version
 
 Multi-module Maven build showing different Java targets.
 
-- `java6`: original greeting console app compiled for Java 6. Tests are skipped here because JUnit 5 requires Java 8+. You need a JDK 6 toolchain to build this module.
-- `java17`: messaging components compiled for Java 17 with JUnit 5 + Mockito tests.
+- One module for each Java version
+- See here all changes from each Java version https://gitmind.com/app/docs/m7ds9m1g 
 
 ## Building
 

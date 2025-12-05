@@ -8,23 +8,23 @@
     <packaging>pom</packaging>
 
     <modules>
-        <module>java1.1</module>
-        <module>java1.2</module>
-        <module>java1.3</module>
-        <module>java1.4</module>
-        <module>java1.5</module>
-        <module>java1.6</module>
-        <module>java1.7</module>
-        <module>java1.8</module>
-        <module>java1.9</module>
-        <module>java1.9basemodule</module>
-        <module>java10</module>
-        <module>java11</module>
-        <module>java12</module>
-        <module>java13</module>
+      <module>java1.1</module>
+      <module>java1.2</module>
+      <module>java1.3</module>
+      <module>java1.4</module>
+      <module>java1.5</module>
+      <module>java1.6</module>
+      <module>java1.7</module>
+      <module>java1.8</module>
+      <module>java1.9</module>
+      <module>java1.9basemodule</module>
+      <module>java10</module>
+      <module>java11</module>
+      <module>java12</module>
+      <module>java13</module>
+      <module>java14</module>
 
-        <module>java17</module>
-
+      <module>java17</module>
     </modules>
 
     <properties>
