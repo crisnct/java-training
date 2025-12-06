@@ -5,7 +5,7 @@
     <option name="VM_PARAMETERS" value="-XX:StartFlightRecording=filename=run.jfr -XX:+UseG1GC -Xlog:gc " />
     <extension name="coverage">
       <pattern>
-        <option name="PATTERN" value="com.example.training.*" />
+        <option name="PATTERN" value="com.example.training.hidden.*" />
         <option name="ENABLED" value="true" />
       </pattern>
     </extension>
