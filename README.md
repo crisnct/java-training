@@ -1,4 +1,5 @@
 # This project illustrates with small snippets the changes made in each Java version
+![java-traning logo](java-training-icon.svg)
 
 Multi-module Maven build showing different Java targets.
 

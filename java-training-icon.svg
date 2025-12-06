@@ -1,0 +1,78 @@
+<svg width="256" height="256" viewBox="0 0 256 256"
+     xmlns="http://www.w3.org/2000/svg">
+
+  <!-- BACKGROUND -->
+  <rect width="256" height="256" fill="#013A63" rx="36" />
+
+  <!-- ALL FOREGROUND ELEMENTS MOVED DOWN A BIT -->
+  <g transform="translate(0,6)">
+
+    <!-- SHADOW -->
+    <ellipse cx="128" cy="184" rx="72" ry="12" fill="#000000" opacity="0.3" />
+
+    <!-- OPEN BOOK -->
+    <path d="M48 176 Q88 156 128 176 L128 210 Q88 192 48 210 Z" fill="#E5E7EB" />
+    <path d="M128 176 Q168 156 208 176 L208 210 Q168 192 128 210 Z" fill="#E5E7EB" />
+
+    <!-- PAGE LINES -->
+    <!-- LEFT PAGE -->
+    <path d="M48 181 Q88 161 128 181" stroke="#60A5FA" stroke-width="2" opacity="0.45" fill="none"/>
+    <path d="M48 187 Q88 167 128 187" stroke="#60A5FA" stroke-width="2" opacity="0.45" fill="none"/>
+    <path d="M48 193 Q88 173 128 193" stroke="#60A5FA" stroke-width="2" opacity="0.45" fill="none"/>
+    <path d="M48 199 Q88 179 128 199" stroke="#60A5FA" stroke-width="2" opacity="0.45" fill="none"/>
+    <path d="M48 205 Q88 185 128 205" stroke="#60A5FA" stroke-width="2" opacity="0.45" fill="none"/>
+    <path d="M48 211 Q88 191 128 211" stroke="#60A5FA" stroke-width="2" opacity="0.45" fill="none"/>
+
+    <!-- RIGHT PAGE -->
+    <path d="M128 181 Q168 161 208 181" stroke="#60A5FA" stroke-width="2" opacity="0.45" fill="none"/>
+    <path d="M128 187 Q168 167 208 187" stroke="#60A5FA" stroke-width="2" opacity="0.45" fill="none"/>
+    <path d="M128 193 Q168 173 208 193" stroke="#60A5FA" stroke-width="2" opacity="0.45" fill="none"/>
+    <path d="M128 199 Q168 179 208 199" stroke="#60A5FA" stroke-width="2" opacity="0.45" fill="none"/>
+    <path d="M128 205 Q168 185 208 205" stroke="#60A5FA" stroke-width="2" opacity="0.45" fill="none"/>
+    <path d="M128 211 Q168 191 208 211" stroke="#60A5FA" stroke-width="2" opacity="0.45" fill="none"/>
+
+    <!-- CENTER FOLD -->
+    <line x1="128" y1="176" x2="128" y2="210" stroke="#C7CED4" stroke-width="2" />
+
+    <!-- TOP CURVE OF BOOK -->
+    <path d="M48 176 Q88 156 128 176 Q168 156 208 176"
+          fill="none" stroke="#C7CED4" stroke-width="3" opacity="0.7" />
+
+    <!-- CUP (25% higher) -->
+    <rect x="72" y="84" width="112" height="75" rx="18" fill="#D7A96E" />
+    <rect x="82" y="96" width="92" height="12" rx="6" fill="#5A3A23" />
+
+    <path d="
+       M184 90
+       Q204 90 206 121
+       Q208 152 184 160
+       Q198 150 198 121
+       Q198 90 184 90 Z"
+      fill="#D7A96E" />
+
+    <line x1="90" y1="84" x2="166" y2="84"
+          stroke="#E5E7EB" stroke-width="3"
+          stroke-linecap="round"
+          opacity="0.25" />
+
+    <!-- JAVA TEXT (blue, a bit down) -->
+    <text x="128" y="148"
+          text-anchor="middle"
+          fill="#1310B7"
+          font-family="system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif"
+          font-weight="900"
+          font-size="26"
+          letter-spacing="3">
+      JAVA
+    </text>
+
+    <!-- SMOKE -->
+    <path d="M128 78 C132 72 132 64 128 58 C124 52 124 44 128 38 C132 32 132 24 128 18"
+          fill="none" stroke="#EF4444" stroke-width="4.5" stroke-linecap="round" opacity="0.95" />
+    <path d="M120 80 C124 74 124 66 120 60 C116 54 116 46 120 40 C124 34 124 26 120 20"
+          fill="none" stroke="#EF4444" stroke-width="4" stroke-linecap="round" opacity="0.8" />
+    <path d="M136 70 C140 64 140 56 136 50 C132 44 132 36 136 30 C140 24 140 16 136 10"
+          fill="none" stroke="#EF4444" stroke-width="4" stroke-linecap="round" opacity="0.8" />
+
+  </g>
+</svg>
