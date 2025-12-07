@@ -28,6 +28,7 @@
       <module>java17</module>
       <module>java18</module>
       <module>java19</module>
+      <module>java20</module>
 
     </modules>
 
