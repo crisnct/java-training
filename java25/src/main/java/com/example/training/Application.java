@@ -1,7 +1,20 @@
 package com.example.training;
 
-//@formatter:off
-import java.nio.charset.Charset;import java.security.NoSuchAlgorithmException;import java.security.SecureRandom;import java.security.Security;import java.time.Instant;import java.util.Map;import javax.imageio.ImageIO;import javax.xml.parsers.DocumentBuilderFactory;import javax.xml.parsers.ParserConfigurationException;import javax.xml.transform.TransformerConfigurationException;import javax.xml.transform.TransformerFactory; /**
+import java.nio.charset.Charset;
+import java.security.NoSuchAlgorithmException;
+import java.security.SecureRandom;
+import java.security.Security;
+import java.time.Instant;
+import java.util.Map;
+import javax.imageio.ImageIO;
+import javax.xml.parsers.DocumentBuilderFactory;
+import javax.xml.parsers.ParserConfigurationException;
+import javax.xml.transform.TransformerConfigurationException;
+import javax.xml.transform.TransformerFactory;
+
+/**
+
+ //@formatter:off
  * Create jmod archive file
  * Execute this command in target/classes folder:
  * "C:\.....\temurin-25\bin\jmod.exe" create ^
@@ -26,7 +39,7 @@ import java.nio.charset.Charset;import java.security.NoSuchAlgorithmException;im
 //@formatter:on
 public class Application {
 
-  public static void main(String[] args) throws ParserConfigurationException, TransformerConfigurationException, NoSuchAlgorithmException {
+  static void main(String[] args) throws ParserConfigurationException, TransformerConfigurationException, NoSuchAlgorithmException {
     GreetingService greetingService = new DefaultGreetingService();
     GreetingPrinter printer = new GreetingPrinter(greetingService, System.out);
     String name = args.length > 0 ? args[0] : "World";
@@ -37,9 +50,10 @@ public class Application {
       long t0 = System.nanoTime();
 
       // Touch a bunch of subsystems that load/link many classes
-      Map<String, Charset> cs = java.nio.charset.Charset.availableCharsets();
-      if (cs.size() == 0)
+      Map<String, Charset> cs = Charset.availableCharsets();
+      if (cs.size() == 0) {
         throw new IllegalStateException("No charsets?");
+      }
       DocumentBuilderFactory.newInstance().newDocumentBuilder();
       TransformerFactory.newInstance().newTransformer();
       "abc123XYZ".matches("(?i)[a-z0-9]+");         // init regex engine

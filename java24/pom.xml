@@ -41,7 +41,7 @@
         <configuration>
           <archive>
             <manifest>
-              <mainClass>com.example.training.Application</mainClass>
+              <mainClass>com.example.training.AOTApplication</mainClass>
             </manifest>
           </archive>
         </configuration>
