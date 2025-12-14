@@ -1,6 +1,7 @@
 package com.example.training.streams;
 
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
 import java.util.Optional;
@@ -14,7 +15,7 @@ public class StreamOperationsDemo {
     List<String> words = Arrays.asList(
         "java", "stream", "cristian", "lambda", "java", "API", "future", "stream"
     );
-    Stream<String> s = words.stream()
+    Stream<String> s1 = words.stream()
         .filter(w -> w.length() > 4)
         .map(String::toUpperCase)
         //explode words into characters
@@ -26,14 +27,22 @@ public class StreamOperationsDemo {
         //skip first 2
         .skip(2)
         .limit(10);
+    System.out.println("\n--- forEach ---");
+    s1.forEach(System.out::println);
+
+    List<List<Integer>> batches = Arrays.asList(
+        Arrays.asList(1, 2),
+        Arrays.asList(3, 4, 5),
+        Collections.singletonList(6)
+    );
+    List<Integer> all2 = batches.stream()
+        .flatMap(List::stream)
+        .collect(Collectors.toList());
+    System.out.println("flatmsp demo: " + all2); // [1, 2, 3, 4, 5, 6]
 
     // =====================================================================
     // TERMINAL OPERATIONS
     // =====================================================================
-
-    // forEach
-    System.out.println("\n--- forEach ---");
-    s.forEach(System.out::println);
 
     // Create a fresh stream for terminal examples (streams are single-use)
     Stream<String> again = words.stream().filter(w -> w.length() > 4);
